@@ -17,6 +17,7 @@ DROP TABLE if exists body_part cascade;
 DROP TABLE if exists data_source cascade;
 DROP TABLE if exists user_progress_weight cascade;
 DROP TABLE if exists user_progress_cardio cascade;
+DROP TABLE if exists user_preference cascade;
 
 CREATE TABLE users
 (
@@ -107,7 +108,13 @@ CREATE TABLE fitness_program
     days_per_wk integer NOT NULL,
     eq_id integer[],
     bodypart_freq jsonb NOT NULL,
-    p_schedule jsonb NOT NULL
+    p_schedule jsonb NOT NULL,
+    cover_img text,
+    p_summary text,
+    shraes integer,
+    stars integer,
+    votes integer,
+    comment_count integer
 );
 
 CREATE TABLE user_progress_weight
@@ -126,5 +133,12 @@ CREATE TABLE user_progress_cardio
     times integer NOT NULL,
     speed integer NOT NULL,
     distance integer NOT NULL
+);
+
+CREATE TABLE user_preference
+(
+    u_id integer NOT NULL REFERENCES users (u_id),
+    ex_id integer NOT NULL REFERENCES exercise (ex_id),
+    pref varchar(1) NOT NULL
 );
 
