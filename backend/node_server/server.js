@@ -34,6 +34,10 @@ helloBot.add('/profile',  [
 ]);
 
 server.use(helloBot.verifyBotFramework({ appId: 'Fitme', appSecret: '11c501f74f1a4fdcaad84e1218478ca9' }));
+server.get('/api/message', function respond(req, res, next) {
+  res.send('hello Rick, I finally work!');
+  next();
+});
 server.post('/api/messages', helloBot.listen());
 
 server.listen(3978, function () {
