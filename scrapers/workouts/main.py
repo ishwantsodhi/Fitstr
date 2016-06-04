@@ -58,7 +58,7 @@ class SoupParser:
     print str(header.string.encode('utf-8'))
     summary_container = dd.find("div", { "class": "workoutSummary" })
     summary_sub_container = summary_container.find("div", { "class": "data-wrap" })
-    with open('names.csv', 'a') as csvfile:
+    with open('mas_popular_muscle_build_194.csv', 'a') as csvfile:
       fieldnames = [
       'Title', 'Main Goal ', 'Author ',
       'Days Per Week ', 'Equipment Required ',
@@ -105,13 +105,21 @@ class SoupParser:
       votes_container = dd.find("div", { "class": "count-container two"})
       votes = votes_container.find("span", { "class": "star-count"})
       if votes is not None:
-        dic["Votes"] = votes.string
+        if (votes.string[-1] == 'K' or votes.string[-1] == 'k'):
+          dic["Votes"] = str(int(float(votes.string[:-1]) * 1000))
+        else:
+          dic["Votes"] = votes.string
 
       # comment count
       comments_container = dd.find("h3", { "class": "blueStripe"})
       comments = comments_container.find("span").previous_sibling.string      
       if comments is not None:
-        dic["Comments"] = comments
+        comment_c = comments.string.split(" Comments")[0]
+        if (comment_c[-1] == 'K' or comment_c[-1] == 'k'):
+          print comment_c
+          dic["Comments"] = str(int(float(comment_c[:-1]) * 1000))
+        else:
+          dic["Comments"] = comment_c
 
       if image_container is not None:
         image = image_container.find("img")
@@ -123,7 +131,7 @@ class SoupParser:
       writer.writerow(dic)
 
       # Write to text file
-      desc = open("phul-workout-contents.txt", "a")
+      desc = open("mas_popular_muscle_build.txt", "a")
       desc.write(json.dumps(dic, indent=2))
     
 if __name__ == "__main__":
@@ -134,6 +142,13 @@ if __name__ == "__main__":
       "https://www.muscleandstrength.com/workouts/muscle-building?page=2&tid=38&did=3",
       "https://www.muscleandstrength.com/workouts/muscle-building?page=3&tid=38&did=3"
     ]
+
+    mas_fat_loss_urls = [
+      "https://www.muscleandstrength.com/workouts/fat-loss?tid=41&did=3",
+      "https://www.muscleandstrength.com/workouts/fat-loss?page=1&tid=41&did=3"
+    ]
+
+
     # s.scrape_web_pages(mas_muscle_building_urls)
     c = 0
     for webpage_url in mas_muscle_building_urls:  
