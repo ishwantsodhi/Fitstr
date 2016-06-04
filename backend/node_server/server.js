@@ -3,6 +3,10 @@ var builder = require('botbuilder');
 var server = restify.createServer();
 var dialog = new builder.LuisDialog('https://api.projectoxford.ai/luis/...');
 
+server.get('/api', function(req, res, next) {
+  res.send('hello Rick, I finally work!');
+  next();
+});
 var helloBot = new builder.BotConnectorBot();
 helloBot.add('/', new builder.CommandDialog()
     .matches('^set name', builder.DialogAction.beginDialog('/profile'))
@@ -34,7 +38,7 @@ helloBot.add('/profile',  [
 ]);
 
 server.use(helloBot.verifyBotFramework({ appId: 'Fitme', appSecret: '11c501f74f1a4fdcaad84e1218478ca9' }));
-server.get('/api/message', function respond(req, res, next) {
+server.get('/', function respond(req, res, next) {
   res.send('hello Rick, I finally work!');
   next();
 });
