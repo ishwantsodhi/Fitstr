@@ -36,7 +36,7 @@ CREATE TABLE equipment
     eq_name varchar(40) NOT NULL
 );
 
-CREATE TYPE fitness_goal AS ENUM ('build_muscle', 'lose_weight', 'stay_fit');
+CREATE TYPE fitness_goal AS ENUM ('Build Muscle', 'Lose Fat', 'General Fitness', 'Increase Strength', 'Increase Endurance');
 CREATE TYPE days_of_wk AS ENUM ('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday');
 CREATE TYPE gym_type AS ENUM ('gym', 'home');
 
@@ -92,8 +92,8 @@ CREATE TABLE data_source
     s_type s_type
 );
 
-CREATE TYPE experience_lvl AS ENUM ('beginner', 'intermediate', 'experienced', 'pro');
-CREATE TYPE p_type AS ENUM ('fullbody', 'split', 'cardio');
+CREATE TYPE experience_lvl AS ENUM ('Beginner', 'Intermediate', 'Advanced');
+CREATE TYPE p_type AS ENUM ('Single Muscle Group', 'Split', 'Full Body');
 
 CREATE TABLE fitness_program
 (
@@ -111,7 +111,7 @@ CREATE TABLE fitness_program
     p_schedule jsonb NOT NULL,
     cover_img text,
     p_summary text,
-    shraes integer,
+    shares integer,
     stars integer,
     votes integer,
     comment_count integer
