@@ -33,7 +33,7 @@ helloBot.add('/profile',  [
     }
 ]);
 
-server.use(helloBot.verifyBotFramework({ appId: 'you id', appSecret: 'your secret' }));
+server.use(helloBot.verifyBotFramework({ appId: 'Fitme', appSecret: '11c501f74f1a4fdcaad84e1218478ca9' }));
 server.post('/api/messages', helloBot.listen());
 
 server.listen(3978, function () {
