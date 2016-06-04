@@ -4,7 +4,8 @@
   "description": "health and wellness bot",
   "main": "./backend/node_server/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./backend/node_server/server.js"
   },
   "author": "Rick Shukla, Eric Feng, Ishwant Sodhi",
   "license": "ISC",
