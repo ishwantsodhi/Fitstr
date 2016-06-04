@@ -18,7 +18,7 @@ class SoupParser:
     print 'Starting...'
 
   # Scrap entire HTML webpages for a source
-  def scrape_web_pages(self, urls):
+  def scrape_web_pages(self, urls, type):
     # Scrape an external webpage
     c = 0
     for url in urls:
@@ -27,13 +27,13 @@ class SoupParser:
       req.add_header("User-agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1309.0 Safari/537.17")
       res = urllib2.urlopen(req)    
       parsed_web_page = BeautifulSoup(res, "html.parser")
-      file = open(name + str(c) + ".txt", "a")
+      file = open(name + str(c) + type + ".txt", "a")
       file.write(str(parsed_web_page))
       c+=1
 
   # Scrap program urls from a webpage
-  def scrape_program_urls(self, file_name, webpage_url, c):
-    text = open(file_name + str(c) + ".txt", "r").read()
+  def scrape_program_urls(self, file_name, webpage_url, type, c):
+    text = open(file_name + str(c) + type + ".txt", "r").read()
     data = BeautifulSoup(text, "html.parser")
     container = data.find("div", { "class": "view-display-id-block_3" })
     url_list = []
@@ -58,7 +58,8 @@ class SoupParser:
     print str(header.string.encode('utf-8'))
     summary_container = dd.find("div", { "class": "workoutSummary" })
     summary_sub_container = summary_container.find("div", { "class": "data-wrap" })
-    with open('mas_popular_muscle_build_194.csv', 'a') as csvfile:
+    # with open('mas_popular_muscle_build_194.csv', 'a') as csvfile:
+    with open('mas_popular_fat_loss.csv', 'a') as csvfile:
       fieldnames = [
       'Title', 'Main Goal ', 'Author ',
       'Days Per Week ', 'Equipment Required ',
@@ -131,7 +132,8 @@ class SoupParser:
       writer.writerow(dic)
 
       # Write to text file
-      desc = open("mas_popular_muscle_build.txt", "a")
+      # desc = open("mas_popular_muscle_build.txt", "a")
+      desc = open("mas_popular_fat_loss.txt", "a")
       desc.write(json.dumps(dic, indent=2))
     
 if __name__ == "__main__":
@@ -149,8 +151,8 @@ if __name__ == "__main__":
     ]
 
 
-    # s.scrape_web_pages(mas_muscle_building_urls)
+    # s.scrape_web_pages(mas_fat_loss_urls, "fat_loss")
     c = 0
-    for webpage_url in mas_muscle_building_urls:  
-      s.scrape_program_urls("muscleandstrength", webpage_url, c)
+    for webpage_url in mas_fat_loss_urls:  
+      s.scrape_program_urls("muscleandstrength", webpage_url, "fat_loss", c)
       c += 1
