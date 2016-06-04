@@ -1,7 +1,7 @@
 var restify = require('restify');
 var builder = require('botbuilder');
-
 var server = restify.createServer();
+var dialog = new builder.LuisDialog('https://api.projectoxford.ai/luis/...');
 
 var helloBot = new builder.BotConnectorBot();
 helloBot.add('/', new builder.CommandDialog()
