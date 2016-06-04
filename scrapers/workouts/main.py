@@ -22,6 +22,7 @@ class SoupParser:
     # Scrape an external webpage
     c = 0
     for url in urls:
+      print url
       name = url.split('.')[1]
       req = urllib2.Request(url)
       req.add_header("User-agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1309.0 Safari/537.17")
@@ -33,9 +34,10 @@ class SoupParser:
 
   # Scrap program urls from a webpage
   def scrape_program_urls(self, file_name, webpage_url, type, c):
+    print file_name + str(c) + type + ".txt"
     text = open(file_name + str(c) + type + ".txt", "r").read()
     data = BeautifulSoup(text, "html.parser")
-    container = data.find("div", { "class": "view-display-id-block_3" })
+    container = data.find("div", { "class": "view-display-id-block_1" })
     url_list = []
     sub_container = container.find("div", {"class" : "view-content"})
     for anchor_tag in sub_container.findAll("div", {"class" : "item"}):
@@ -59,7 +61,7 @@ class SoupParser:
     summary_container = dd.find("div", { "class": "workoutSummary" })
     summary_sub_container = summary_container.find("div", { "class": "data-wrap" })
     # with open('mas_popular_muscle_build_194.csv', 'a') as csvfile:
-    with open('mas_popular_fat_loss.csv', 'a') as csvfile:
+    with open('mas_popular_cardio.csv', 'a') as csvfile:
       fieldnames = [
       'Title', 'Main Goal ', 'Author ',
       'Days Per Week ', 'Equipment Required ',
@@ -133,7 +135,7 @@ class SoupParser:
 
       # Write to text file
       # desc = open("mas_popular_muscle_build.txt", "a")
-      desc = open("mas_popular_fat_loss.txt", "a")
+      desc = open("mas_popular_cardio.txt", "a")
       desc.write(json.dumps(dic, indent=2))
     
 if __name__ == "__main__":
@@ -150,9 +152,17 @@ if __name__ == "__main__":
       "https://www.muscleandstrength.com/workouts/fat-loss?page=1&tid=41&did=3"
     ]
 
+    mas_strength_urls = [
+      "https://www.muscleandstrength.com/workouts/strength?tid=39&did=3",
+      "https://www.muscleandstrength.com/workouts/strength?page=1&tid=39&did=3"
+    ]
 
-    # s.scrape_web_pages(mas_fat_loss_urls, "fat_loss")
+    mas_cardio_urls = [
+      "https://www.muscleandstrength.com/workouts/cardio"
+    ]
+
+    # s.scrape_web_pages(mas_cardio_urls, "cardio")
     c = 0
-    for webpage_url in mas_fat_loss_urls:  
-      s.scrape_program_urls("muscleandstrength", webpage_url, "fat_loss", c)
+    for webpage_url in mas_cardio_urls:  
+      s.scrape_program_urls("muscleandstrength", webpage_url, "cardio", c)
       c += 1
