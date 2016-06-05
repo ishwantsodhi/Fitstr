@@ -37,7 +37,7 @@ CREATE TABLE equipment
     eq_name varchar(40) NOT NULL
 );
 
-CREATE TYPE fitness_goal AS ENUM ('Build Muscle', 'Lose Fat', 'General Fitness', 'Increase Strength', 'Increase Endurance');
+CREATE TYPE fitness_goal AS ENUM ('Build Muscle', 'Lose Fat', 'General Fitness', 'Increase Strength', 'Increase Endurance', 'Sports Performance');
 CREATE TYPE days_of_wk AS ENUM ('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday');
 CREATE TYPE gym_type AS ENUM ('gym', 'home');
 
