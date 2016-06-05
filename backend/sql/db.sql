@@ -5,6 +5,7 @@ DROP TYPE if exists ex_type cascade;
 DROP TYPE if exists s_type cascade;
 DROP TYPE if exists experience_lvl cascade;
 DROP TYPE if exists p_type cascade;
+DROP TYPE if exists gender cascade;
 
 DROP TABLE if exists users cascade;
 DROP TABLE if exists user_fitness cascade;
@@ -94,27 +95,28 @@ CREATE TABLE data_source
 
 CREATE TYPE experience_lvl AS ENUM ('Beginner', 'Intermediate', 'Advanced');
 CREATE TYPE p_type AS ENUM ('Single Muscle Group', 'Split', 'Full Body');
+CREATE TYPE gender AS ENUM ('Male', 'Female', 'Male & Female');
 
 CREATE TABLE fitness_program
 (
     P_id SERIAL PRIMARY KEY,
-    p_name varchar(40) NOT NULL,
-    p_type p_type,
+    p_name text,
+    fit_goal fitness_goal,
     author varchar(40),
-    data_source varchar(40),
-    fit_goal fitness_goal NOT NULL,
-    exp_lvl experience_lvl NOT NULL,
-    gender varchar(1) NOT NULL,
-    days_per_wk integer NOT NULL,
-    eq_id integer[],
-    bodypart_freq jsonb NOT NULL,
-    p_schedule jsonb NOT NULL,
-    cover_img text,
+    days_per_wk integer,
+    eq_ids text,
+    p_type p_type,
+    exp_lvl experience_lvl,
+    gender gender,
     p_summary text,
+    cover_img text,
     shares integer,
-    stars integer,
+    stars float,
     votes integer,
-    comment_count integer
+    comment_count integer,
+    bodypart_freq jsonb,
+    p_schedule jsonb,
+    data_source varchar(40)
 );
 
 CREATE TABLE user_progress_weight
