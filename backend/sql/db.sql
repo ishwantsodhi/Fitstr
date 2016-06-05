@@ -145,4 +145,5 @@ CREATE TABLE user_preference
 );
 
 INSERT INTO equipment (eq_name) 
-VALUES ('Barbell'), ('Bodyweight'), ('Cables'), ('Dumbbells'), ('Machines'), ('EZ Bar'), ('Other'), ('Kettle Bells'), ('Bands'), ('Exercise Ball'), ('Medicine Ball');
+VALUES ('Barbell'), ('Bodyweight'), ('Cables'), ('Dumbbells'), ('Machines'), ('EZ Bar'), ('Other'), ('Kettle Bells'), ('Bands'), ('Exercise Ball'), ('Medicine Ball'), ('Foam Roll'), ('None');
+
