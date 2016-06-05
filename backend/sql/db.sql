@@ -94,7 +94,7 @@ CREATE TABLE data_source
 );
 
 CREATE TYPE experience_lvl AS ENUM ('Beginner', 'Intermediate', 'Advanced');
-CREATE TYPE p_type AS ENUM ('Single Muscle Group', 'Split', 'Full Body');
+CREATE TYPE p_type AS ENUM ('Single Muscle Group', 'Split', 'Full Body', 'Sports Training');
 CREATE TYPE gender AS ENUM ('Male', 'Female', 'Male & Female');
 
 CREATE TABLE fitness_program
