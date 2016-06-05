@@ -21,7 +21,7 @@ DROP TABLE if exists user_preference cascade;
 
 CREATE TABLE users
 (
-    u_id integer NOT NUll PRIMARY KEY,
+    u_id SERIAL PRIMARY KEY,
     uname varchar(40) NOT NULL,
     weight integer,
     height integer,
@@ -32,11 +32,11 @@ CREATE TABLE users
 
 CREATE TABLE equipment
 (
-    eq_id integer NOT NULL PRIMARY KEY,
+    eq_id SERIAL PRIMARY KEY,
     eq_name varchar(40) NOT NULL
 );
 
-CREATE TYPE fitness_goal AS ENUM ('build_muscle', 'lose_weight', 'stay_fit');
+CREATE TYPE fitness_goal AS ENUM ('Build Muscle', 'Lose Fat', 'General Fitness', 'Increase Strength', 'Increase Endurance');
 CREATE TYPE days_of_wk AS ENUM ('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday');
 CREATE TYPE gym_type AS ENUM ('gym', 'home');
 
@@ -54,7 +54,7 @@ CREATE TABLE user_fitness
 
 CREATE TABLE body_part
 (
-    bp_id integer NOT NULL PRIMARY KEY,
+    bp_id SERIAL PRIMARY KEY,
     bp_name varchar(40) NOT NULL
 );
 
@@ -68,7 +68,7 @@ CREATE TYPE ex_type AS ENUM ('compound', 'isolation');
 
 CREATE TABLE exercise
 (
-    ex_id integer NOT NULL PRIMARY KEY,
+    ex_id SERIAL PRIMARY KEY,
     ex_name varchar(40) NOT NULL,
     ex_type ex_type,
     p_bodypart integer[] NOT NULL,
@@ -87,17 +87,17 @@ CREATE TYPE s_type AS ENUM ('website', 'pro');
 
 CREATE TABLE data_source
 (
-    s_id integer NOT NULL PRIMARY KEY,
+    s_id SERIAL PRIMARY KEY,
     s_name varchar(40),
     s_type s_type
 );
 
-CREATE TYPE experience_lvl AS ENUM ('beginner', 'intermediate', 'experienced', 'pro');
-CREATE TYPE p_type AS ENUM ('fullbody', 'split', 'cardio');
+CREATE TYPE experience_lvl AS ENUM ('Beginner', 'Intermediate', 'Advanced');
+CREATE TYPE p_type AS ENUM ('Single Muscle Group', 'Split', 'Full Body');
 
 CREATE TABLE fitness_program
 (
-    P_id integer NOT NULL PRIMARY KEY,
+    P_id SERIAL PRIMARY KEY,
     p_name varchar(40) NOT NULL,
     p_type p_type,
     author varchar(40),
@@ -111,7 +111,7 @@ CREATE TABLE fitness_program
     p_schedule jsonb NOT NULL,
     cover_img text,
     p_summary text,
-    shraes integer,
+    shares integer,
     stars integer,
     votes integer,
     comment_count integer
@@ -142,3 +142,5 @@ CREATE TABLE user_preference
     pref varchar(1) NOT NULL
 );
 
+INSERT INTO equipment (eq_name) 
+VALUES ('Barbell'), ('Bodyweight'), ('Cables'), ('Dumbbells'), ('Machines'), ('EZ Bar'), ('Other'), ('Kettle Bells'), ('Bands'), ('Exercise Ball'), ('Medicine Ball');
