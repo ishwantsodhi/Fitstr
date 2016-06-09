@@ -50,7 +50,8 @@ CREATE TABLE user_fitness
     days_available integer,
     busy_days days_of_wk[],
     gym_type gym_type,
-    eq_id integer[]
+    eq_id integer[],
+    p_id REFERENCES fitness_program (p_id)
 );
 
 CREATE TABLE body_part
