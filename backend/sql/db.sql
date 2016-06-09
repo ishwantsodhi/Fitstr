@@ -26,7 +26,7 @@ CREATE TABLE users
     uname varchar(40) NOT NULL,
     weight integer,
     height integer,
-    gender varchar(1),
+    gender gender,
     age integer,
     location varchar(40)
 );
@@ -45,8 +45,8 @@ CREATE TABLE user_fitness
 (
     u_id integer NOT NULL REFERENCES users (u_id),
     current_fitness integer,
-    experience integer NOT NULL,
-    fit_goal fitness_goal NOT NULL,
+    experience integer,
+    fit_goal fitness_goal,
     days_available integer,
     busy_days days_of_wk[],
     gym_type gym_type,
