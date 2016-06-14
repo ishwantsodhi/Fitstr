@@ -1,6 +1,20 @@
--- user data
-INSERT INTO users (uname, weight, height, gender, age) 
-VALUES ('Eric',63,177,'Male',21), ('Rick',80,200,'Male',22),('Ishwant',70,175,'Male',25),('Vicky',43,155,'Female',21),('Selina',50,163,'Female',24),('Justin',70,180,'Male',27), ('Rihanna',55,160,'Female',30), ('Bob',90,174,'Male',25), ('Jeremy',90,193,'Male',26), ('Sabrina',55, 168,'Female',18),('James',75,177,'Male',22),('Kelsey',52,163,'Female',29),('Kevin',65,170,'Male',30),('Doris',54,164,'Female',34),('Angela',60, 169,'Female',27),('Patrick',76,178,'Male',24),('Bonny',60,166,'Female',35),('Michelle',47,162,'Female',39),('John',78,170,'Male',60),('Roger',78,176,'Male',50),('Alex',64,177,'Male',20);
+-- user 
+INSERT INTO users (uname, weight, height, gender, bday) 
+VALUES ('Eric',63,177,'Male','1994-09-20');
 
--- user_fitness data
-INSERT INTO user_fitness(u_id, current_fitness, experience, fit_goal, days_available, busy_days, p_id) VALUES (1,1,2,'General Fitness',4,ARRAY['Tuesday']::days_of_wk[],1),(2,4,5,'Build Muscle',5,ARRAY['Monday','Friday']::days_of_wk[],2),(3,7,7,'Lose Fat',7,ARRAY[]::days_of_wk[],3),(4,8,5,'Increase Strength',6,ARRAY['Wednesday']::days_of_wk[],4),(5,7,9,'Increase Endurance',3,ARRAY['Monday']::days_of_wk[],5),(6,1,5,'Sports Performance',2,ARRAY['Thursday']::days_of_wk[],6);
+-- goal
+INSERT INTO goals (goal_type, goal_name)
+VALUES ('Activity', 'calariessOut');
+
+-- personal_goal
+INSERT INTO personal_goal (user_id,goal_id,init_value,goal_value)
+VALUES (1,1,1643,2500);
+
+-- challenges
+INSERT INTO challenges (goal_id, challenge_start_date)
+VALUES (1, CURRENT_DATE);
+
+-- user_challenge
+INSERT INTO user_challenge (challenge_id, user_id, user_challenge_status)
+VALUES (1,1,'Pending');
+
